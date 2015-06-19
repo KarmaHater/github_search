@@ -20,20 +20,19 @@ HttpRequest.prototype = {
      error: function() {
        alert("error happened");
      },
-     createIssue: function(data) {
-        for (var i = data.length - 1; i >= 0; i--) {
-          var num = data[i].number;
-          var title = data[i].title;
-          var createdAt = data[i].created_at;
-          var issue = new Issue({number: data[i].number, title: title, createdDate: createdAt });
-          this.createIssueList(issue);
-          };
-       },
-       createIssueList: function(issue) {
-          console.log(issue.toJSON())
-          issues.add(issue);
-
-          console.log(issues.toJSON())
+   createIssue: function(data) {
+      for (var i = data.length - 1; i >= 0; i--) {
+        var num = data[i].number;
+        var title = data[i].title;
+        var createdAt = data[i].created_at;
+        var issue = new Issue({number: data[i].number, title: title, createdDate: createdAt });
+        this.createIssueList(issue);
+        };
+     },
+     createIssueList: function(issue) {
+        console.log(issue.toJSON())
+        issues.add(issue);
+        console.log(issues.toJSON())
        }
     });
   }

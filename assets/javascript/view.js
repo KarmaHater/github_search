@@ -2,7 +2,7 @@ var issues = new IssuesList();
 
 var IssueView = Backbone.View.extend({
   model: new Issue(),
-  tagName: 'div',
+  tagName: 'td',
   initialize: function() {
     this.template = _.template($('#issue-template').html());
   },
