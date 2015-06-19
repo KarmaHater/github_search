@@ -1,4 +1,5 @@
-$(document).ready(function () {
+$(document).ready(function() {
   var requestData = new HttpRequest();
-  requestData.bindEvents()
+  requestData.bindEvents();
+  var appView = new IssuesView();
 });

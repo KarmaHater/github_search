@@ -1,4 +1,4 @@
-var GithubIssue = Backbone.Model.extend({
+var Issue = Backbone.Model.extend({
   defaults: function () {
     return {
       number: '',
@@ -8,6 +8,6 @@ var GithubIssue = Backbone.Model.extend({
   }
 });
 
-var GithubIssueList = Backbone.Collection.extend({
-  model: GithubIssue,
+var IssuesList = Backbone.Collection.extend({
+  model: Issue,
 });
