@@ -20,17 +20,19 @@ HttpRequest.prototype = {
   },
   autoFill: function() {
     $.get( 'https://api.github.com/users/' + $("#owner").val() + '/repos', function( data ) {
-      data = getRepos(data)
+      // data = this.getRepos(data)
+     var data = _.map( data, function(repo){
+        return repo.name
+      })
+     debugger
       $('#title').select2({data: data, placeholder: "Select a Repo"})
     });
   },
-  getRepos: function(data) {
-    function autoFill (data) {
-      return _.map( data, function(repo){
-        return repo.name
-      })
-    }
-  },
+  // getRepos: function(data) {
+  //   return _.map( data, function(repo){
+  //     return repo.name
+  //   })
+  // },
   getIssues: function (owner, title) {
     $.ajax({
      url: 'https://api.github.com/repos/' + owner + '/'+ title +'/issues',

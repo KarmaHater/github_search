@@ -8,8 +8,8 @@ $(document).ready(function() {
 //   $('#title').select2({data: data, placeholder: "Select a Repo"})
 // });
 
-function autoFill (data) {
-  return _.map( data, function(repo){
-    return repo.name
-  })
-}
+// function autoFill (data) {
+//   return _.map( data, function(repo){
+//     return repo.name
+//   })
+// }
