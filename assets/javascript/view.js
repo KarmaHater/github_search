@@ -1,5 +1,3 @@
-var issues = new IssuesList();
-
 var IssueView = Backbone.View.extend({
   model: new Issue(),
   tagName: 'td',
