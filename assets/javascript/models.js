@@ -9,5 +9,5 @@ var Issue = Backbone.Model.extend({
 });
 
 var IssuesList = Backbone.Collection.extend({
-  model: Issue,
+  model: Issue
 });

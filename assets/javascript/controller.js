@@ -30,9 +30,10 @@ HttpRequest.prototype = {
           };
        },
        createIssueList: function(issue) {
-          var issues = new IssuesList();
+          console.log(issue.toJSON())
           issues.add(issue);
-          console.log(issues)
+
+          console.log(issues.toJSON())
        }
     });
   }
