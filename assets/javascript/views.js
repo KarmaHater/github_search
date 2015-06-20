@@ -43,5 +43,5 @@ var ShowIssuesView = Backbone.View.extend({
     var issue = this.model.get(id)
     this.$el.html(this.template(issue.toJSON()));
     return this;
-  }
+  } 
 });
