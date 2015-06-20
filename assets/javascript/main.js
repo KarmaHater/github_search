@@ -1,7 +1,7 @@
-$(document).ready(function() {
-  var requestData = new HttpRequest();
-  requestData.bindEvents();
-});
+// $(document).ready(function() {
+//   var requestData = new HttpRequest();
+//   requestData.bindEvents();
+// });
 
 // $.get( "https://api.github.com/users/kinduff/repos", function( data ) {
 //   data = autoFill(data)
@@ -13,3 +13,9 @@ $(document).ready(function() {
 //     return repo.name
 //   })
 // }
+
+// v    for (var i = 0; i < this.model.length; i++) {
+//       var issue = this.model.models[i]
+//     var attributes = issue.toJSON()
+//     this.$el.html(this.template(attributes));
+//     };
