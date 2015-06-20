@@ -30,6 +30,7 @@ var IssuesView = Backbone.View.extend({
 });
 
 var ShowIssuesView = Backbone.View.extend({
+  id: "",
   model: issues,
   el: $('.container'),
   tagName: 'span',
@@ -38,7 +39,8 @@ var ShowIssuesView = Backbone.View.extend({
     console.log("show view")
   },
   render: function() {
-    var issue = this.model.get(2)
+    var id = parseInt(this.id)
+    var issue = this.model.get(id)
     this.$el.html(this.template(issue.toJSON()));
     return this;
   }

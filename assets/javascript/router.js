@@ -7,7 +7,7 @@ var IssuesRouter = Backbone.Router.extend({
     new IssuesView({model: issues}).render()
   },
   getIssue: function(id) {
-    new ShowIssuesView(id).render()
+    new ShowIssuesView({id: id}).render()
   }
 })
 
