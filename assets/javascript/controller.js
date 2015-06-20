@@ -1,6 +1,4 @@
 function HttpRequest () {
-  this.owner = $("#owner")
-  this.title = $("#title")
 };
 
 HttpRequest.prototype = {
@@ -32,28 +30,26 @@ HttpRequest.prototype = {
   getIssues: function (owner, title) {
     $.ajax({
      url: 'https://api.github.com/repos/' + owner + '/'+ title +'/issues',
-     type: 'GET',
-     success: function(data) {
+     type: 'GET'
+     })
+    .success(function(data){
       this.createIssue(data);
-     },
-     error: function() {
+    }.bind(this))
+    .error(function() {
        alert("error happened");
-     }
-   })
+    })
   },
   createIssue: function(data) {
     for (var i = data.length - 1; i >= 0; i--) {
       var num = data[i].number;
       var title = data[i].title;
       var createdAt = data[i].created_at;
-      var issue = new Issue({number: data[i].number, title: title, createdDate: createdAt });
+      var issue = new Issue({number: data[i].number, title: title, createdAt: createdAt });
       this.createIssueList(issue);
     };
   },
   createIssueList: function(issue) {
-    console.log(issue.toJSON())
     issues.add(issue);
-    console.log(issues.toJSON())
   }
 }
 
