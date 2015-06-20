@@ -4,18 +4,19 @@ function HttpRequest () {
 HttpRequest.prototype = {
   bindEvents: function () {
 
-  $('#owner').on('mouseout', function() { 
-    console.log("leave")
-    this.getRepos()
-  }.bind(this))
+  // $('#owner').on('mouseout', function() { 
+  //   console.log("leave")
+  //   this.getRepos()
+  // }.bind(this))
 
-  $('#GetResults').on('submit', function(e) {
-    var owner = $("#owner").val();
-    var title = $("#title").val();
-    this.getIssues(owner, title);
-    return false;
-    }.bind(this));
+  // $('#GetResults').on('submit', function(e) {
+  //   var owner = $("#owner").val();
+  //   var title = $("#title").val();
+  //   this.getIssues(owner, title);
+  //   return false;
+  //   }.bind(this));
   },
+  
   getRepos: function() {
     $("#spinner").show()
     $.ajax({
