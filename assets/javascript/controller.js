@@ -4,10 +4,10 @@ function HttpRequest () {
 HttpRequest.prototype = {
   bindEvents: function () {
 
-  // $('#owner').on('mouseout', function() { 
-  //   console.log("leave")
-  //   this.getRepos()
-  // }.bind(this))
+  $('#owner').on('mouseout', function() { 
+    console.log("leave")
+    this.getRepos()
+  }.bind(this))
 
   $('#GetResults').on('submit', function(e) {
     var owner = $("#owner").val();
@@ -16,17 +16,17 @@ HttpRequest.prototype = {
     return false;
     }.bind(this));
   },
-  // getRepos: function() {
-  //   $.get( 'https://api.github.com/users/' + $("#owner").val() + '/repos', function( data ) {
-  //    var data = this.autoFill(data)
-  //     $('#title').select2({data: data, placeholder: "Select a Repo"})
-  //   }.bind(this));
-  // },
-  // autoFill: function(data) {
-  //   return _.map( data, function(repo){
-  //     return repo.name
-  //   })
-  // },
+  getRepos: function() {
+    $.get( 'https://api.github.com/users/' + $("#owner").val() + '/repos', function( data ) {
+     var data = this.autoFill(data)
+      $('#title').select2({data: data, placeholder: "Select a Repo"})
+    }.bind(this));
+  },
+  autoFill: function(data) {
+    return _.map( data, function(repo){
+      return repo.name
+    })
+  },
   getIssues: function (owner, title) {
     $.ajax({
      url: 'https://api.github.com/repos/' + owner + '/'+ title +'/issues',

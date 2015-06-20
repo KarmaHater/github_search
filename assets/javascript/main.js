@@ -13,9 +13,3 @@ $(document).ready(function() {
 //     return repo.name
 //   })
 // }
-
-// v    for (var i = 0; i < this.model.length; i++) {
-//       var issue = this.model.models[i]
-//     var attributes = issue.toJSON()
-//     this.$el.html(this.template(attributes));
-//     };
