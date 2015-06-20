@@ -37,8 +37,6 @@ HttpRequest.prototype = {
     }.bind(this))
     .error(function() {
        alert("error happened");
-    // data = [{number: 4, title: "shit", creationDate: "fuck"}]
-    // this.createIssue(data);
     })
   },
   createIssue: function(data) {

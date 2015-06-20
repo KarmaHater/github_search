@@ -46,12 +46,6 @@ var IssuesView = Backbone.View.extend({
   }
 });
 
-// var one = new Issue({title: "fuck", createdAt: "now"})
-// var two = new Issue({title: "you", createdAt: "now"})
-// var three = new Issue({title: "sideways", createdAt: "now"})
-// var l = new IssuesList([one, two, three ]);
-
-
 var view = new IssuesView({model: issues})
 view.render()
 
