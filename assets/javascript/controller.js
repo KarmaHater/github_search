@@ -70,7 +70,7 @@ HttpRequest.prototype = {
       var num = data[i].number;
       var title = data[i].title;
       var createdAt = data[i].created_at;
-      var issue = new Issue({number: data[i].number, title: title, createdAt: createdAt });
+      var issue = new Issue({number: data[i].number, title: title, createdAt: createdAt, user: data.user.login, avatar: data.user.avatar, follower: data.user.followers_url, account: data.user.html_url});
       this.createIssueList(issue);
     };
   },
