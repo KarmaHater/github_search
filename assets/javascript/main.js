@@ -1,7 +1,7 @@
-// $(document).ready(function() {
-//   var requestData = new HttpRequest();
-//   requestData.bindEvents();
-// });
+$(document).ready(function() {
+  var requestData = new HttpRequest();
+  requestData.bindEvents();
+});
 
 // $.get( "https://api.github.com/users/kinduff/repos", function( data ) {
 //   data = autoFill(data)

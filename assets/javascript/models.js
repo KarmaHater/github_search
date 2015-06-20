@@ -6,6 +6,7 @@ var Issue = Backbone.Model.extend({
     return {
       number: '',
       title: '',
+      createdAt: '',
     }
   }
 });
