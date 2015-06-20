@@ -1,0 +1,45 @@
+.alert-box {
+  position: relative;
+}
+
+.alert-box .alert-text {
+  border-radius: 3px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  padding: 5px;
+  padding-top: 10px;
+  height: 39px;
+}
+
+.alert-box .alert-text.success {
+  background: #4CAE4C;
+}
+
+.alert-box .alert-text.warning {
+  background: #F0AD4E;
+}
+
+.alert-box .alert-text.danger {
+  background: #D9534F;
+}
+
+.alert-box .arrow-down {
+  margin-left: 5px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+
+.alert-box .arrow-down.success {
+  border-top: 10px solid #4CAE4C;
+}
+
+.alert-box .arrow-down.warning {
+  border-top: 10px solid #F0AD4E;
+}
+
+.alert-box .arrow-down.danger {
+  border-top: 10px solid #D9534F;
+}

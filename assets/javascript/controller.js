@@ -27,17 +27,26 @@ HttpRequest.prototype = {
       return repo.name
     })
   },
+  reset: function() {
+    $("#GetResults")[0].reset()
+    $("#title").select2({placeholder: "Select a customer"});
+  },
   getIssues: function (owner, title) {
     $.ajax({
      url: 'https://api.github.com/repos/' + owner + '/'+ title +'/issues',
      type: 'GET'
      })
     .success(function(data){
+      this.reset()
+      var message = data.length + " issues were found"
+      toolTip.success(message, $("#toolTip"), "success")
       this.createIssue(data);
     }.bind(this))
     .error(function() {
-       alert("error happened");
-    })
+      this.reset()
+      var message = "An error has occured."
+      toolTip.danger(message, $("#toolTip"), "success")
+    }.bind(this))
   },
   createIssue: function(data) {
     for (var i = data.length - 1; i >= 0; i--) {
