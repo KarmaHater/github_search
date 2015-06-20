@@ -26,8 +26,32 @@ var IssuesView = Backbone.View.extend({
       self.$el.append((new IssueView({model: issue})).render().$el);
     });
       return this;
+  },
+  events: {
+    "click h2" : "shit"
+  },
+  shit: function() {
+    debugger
   }
 });
+
+var  IndexIsseusView = Backbone.View.extend({
+  el: $('.container'),
+  initialize: function() {
+    this.template = _.template($('#index-page-templete').html());
+    console.log("show view")
+  },
+  render: function() {
+    this.$el.html(this.template)
+    return this;
+  },
+  events: {
+    "click h2" : "shit"
+  },
+  shit: function() {
+    debugger
+  }
+})
 
 var ShowIssuesView = Backbone.View.extend({
   id: "",
@@ -43,5 +67,11 @@ var ShowIssuesView = Backbone.View.extend({
     var issue = this.model.get(id)
     this.$el.html(this.template(issue.toJSON()));
     return this;
-  } 
+  }, 
+  events: {
+    "click h2" : "shit"
+  },
+  shit: function() {
+    debugger
+  }
 });

@@ -11,8 +11,10 @@
 </head>
 <body>
   <img id="spinner" src="http://www.fetchmywardrobe.com/app/webroot/img/loading-spinner11.gif" alt="">
-  <h2>pratice events fucker</h2>
   <div class="container">
+  </div>
+<!-- templates -->
+  <script type="text/template" id="index-page-templete">
     <div class="row">
       <h1>Who Repos Are You Look For?</h1>
     </div>
@@ -36,6 +38,7 @@
     <div class="panel panel-info  ">
       <div class="panel-heading"> Below are the following Issues</div>
       <table class="table table-responsivee table-striped table-hover table-condensed">
+    <h2>pratice events fucker</h2>
         <thead>
           <tr>
             <th>Title</th>
@@ -46,14 +49,12 @@
         <tbody id="issues-container">
         </tbody>
       </table>
-      <button>click me </button>
     </div>
-  </div>
-<!-- templates -->
+  </script>
   <script type="text/template" id="issue-template">
-  <td><a href="#issues/<%= id %>"><%= title %></a></td>
-  <td><%= number %></td>
-  <td><%= createdAt %></td>
+    <td><a href="#issues/<%= id %>"><%= title %></a></td>
+    <td><%= number %></td>
+    <td><%= createdAt %></td>
   </script>
   <script type="text/template" id="issue-show-template">
     <div class="row users">
