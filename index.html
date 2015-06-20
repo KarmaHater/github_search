@@ -6,8 +6,11 @@
   <title>Hello World in Backbone.js</title>
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="assets/stylesheets/tool-tips.css">
+  <link rel="stylesheet" type="text/css" href="assets/stylesheets/spinner.css">
 </head>
 <body>
+<img id="spinner" src="http://www.fetchmywardrobe.com/app/webroot/img/loading-spinner11.gif" alt="">
+
   <div class="container">
     <div class="row">
       <h1>Who Repos Are You Look For?</h1>
@@ -15,6 +18,7 @@
     <div class="row">
       <div class="col-md-6">
         <form id="GetResults" >
+          <div id="reposToolTip"></div>
           <div class="form-group">
             <input id="owner"  type="text" class="form-control" placeholder="Search for username...">
           </div>
@@ -26,8 +30,6 @@
           </div>
         </form>
       </div>
-    <hr>
-
   </div>
   <div id="toolTip"></div>
   <div class="panel panel-info  ">

@@ -1,5 +1,5 @@
 .alert-box {
-  position: relative;
+  position: absolute;
 }
 
 .alert-box .alert-text {
@@ -42,4 +42,12 @@
 
 .alert-box .arrow-down.danger {
   border-top: 10px solid #D9534F;
+}
+
+#reposToolTip {
+  position: relative;
+}
+
+#toolTip {
+  position: relative;
 }

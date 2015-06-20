@@ -17,10 +17,23 @@ HttpRequest.prototype = {
     }.bind(this));
   },
   getRepos: function() {
-    $.get( 'https://api.github.com/users/' + $("#owner").val() + '/repos', function( data ) {
-     var data = this.autoFill(data)
+    $("#spinner").show()
+    $.ajax({
+     url: 'https://api.github.com/users/' + $("#owner").val() + '/repos',
+     type: 'GET'
+     })
+    .success(function(data){
+      $("#spinner").hide()
+      var data = this.autoFill(data)
+      var message = "Repos loaded in select tag"
+       toolTip.success(message, $("#reposToolTip"))
       $('#title').select2({data: data, placeholder: "Select a Repo"})
-    }.bind(this));
+    }.bind(this))
+    .error(function() {
+      $("#spinner").hide()
+      var message = "An error has occured."
+      toolTip.danger(message, $("#reposToolTip"))
+    }.bind(this))
   },
   autoFill: function(data) {
     return _.map( data, function(repo){
@@ -32,20 +45,23 @@ HttpRequest.prototype = {
     $("#title").select2({placeholder: "Select a customer"});
   },
   getIssues: function (owner, title) {
+    $("#spinner").show()
     $.ajax({
      url: 'https://api.github.com/repos/' + owner + '/'+ title +'/issues',
      type: 'GET'
      })
     .success(function(data){
+      $("#spinner").hide()
       this.reset()
       var message = data.length + " issues were found"
-      toolTip.success(message, $("#toolTip"), "success")
+      toolTip.success(message, $("#toolTip"))
       this.createIssue(data);
     }.bind(this))
     .error(function() {
+      $("#spinner").hide()
       this.reset()
       var message = "An error has occured."
-      toolTip.danger(message, $("#toolTip"), "success")
+      toolTip.danger(message, $("#toolTip"))
     }.bind(this))
   },
   createIssue: function(data) {

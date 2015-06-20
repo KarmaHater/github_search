@@ -1,0 +1,7 @@
+#spinner {
+  display: none;
+  outline: 2px solid  pink;
+  position: fixed;
+  top: 20%;
+  left: 40%;
+}
