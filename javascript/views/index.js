@@ -1,6 +1,4 @@
 var  IndexIsseusView = Backbone.View.extend({
-  owner: $("#owner").val(),
-  title: $("#title").val(),
   el: $('.container-1'),
   initialize: function() {
     this.template = _.template($('#index-page-templete').html());
@@ -46,12 +44,11 @@ var  IndexIsseusView = Backbone.View.extend({
      })
     .success(function(data){
       var issue = new Issue
-      issue.createIssue(data)
+      issue.createIssue(data);
       $("#spinner").hide()
       this.reset()
       var message = data.length + " issues were found"
-      toolTip.success(message, $("#toolTip"))
-      this.createIssue(data);
+      toolTip.success(message, $("#toolTip"));
     }.bind(this))
     .error(function() {
       $("#spinner").hide()

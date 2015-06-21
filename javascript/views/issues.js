@@ -18,6 +18,7 @@ var IssuesView = Backbone.View.extend({
   initialize: function() {
     console.log("creating issues view")
     this.model.on('add', this.render, this);
+    this.model.on('reset', this.render, this);
   },
   render: function() {
     var self = this;
