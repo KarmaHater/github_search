@@ -9,15 +9,26 @@ var Issue = Backbone.Model.extend({
       avatar: '',
       account: ''
     }
+  },
+  createIssue: function(data) {
+  for (var i = data.length - 1; i >= 0; i--) {
+    var number = data[i].number;
+    var title = data[i].title;
+    var createdAt = data[i].created_at;
+    var user = data[i].user.login;
+    var avatar = data[i].user.avatar_url;
+    var account = data[i].user.html_url;
+    var issue = new Issue({number: number, title: title, createdAt: createdAt, user: user, avatar: avatar, account: account});
+    number
+    issues.createIssueList(issue);
+    }
   }
 });
 
 var IssuesList = Backbone.Collection.extend({
-  model: Issue
+  model: Issue,
+  createIssueList: function(issue) {
+    issues.add(issue);
+  }
 });
 
-var issue_one = new Issue({name: "andra", title: "fuck", createdAt: "poop", id: 1})
-var issue_two = new Issue({avatar: "https://avatars.githubusercontent.com/u/1270156?v=3", title: "fuck", createdAt: "poop", id: 2, number: 12234234234234234, user: "kinduff", account: "https://github.com/kinduff"})
-var issue_three = new Issue({name: "sara", title: "fuck", createdAt: "poop", id: 3})
-var issue_four = new Issue({name: "kira", title: "fuck", createdAt: "poop", id: 4})
-var issue_five = new Issue({name: "mark", title: "fuck", createdAt: "poop", id: 5})

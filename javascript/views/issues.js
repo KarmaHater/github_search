@@ -1,4 +1,4 @@
-var issues = new IssuesList([issue_two, issue_three, issue_four,issue_five, issue_one]);
+var issues = new IssuesList();
 
 var IssueView = Backbone.View.extend({
   model: new Issue(),
