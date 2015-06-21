@@ -31,10 +31,4 @@ var Issue = Backbone.Model.extend({
   }
 });
 
-var IssuesList = Backbone.Collection.extend({
-  model: Issue,
-  createIssueList: function(issue) {
-    issues.add(issue);
-  }
-});
 

@@ -1,5 +1,5 @@
 var  IndexIsseusView = Backbone.View.extend({
-  el: $('.container-1'),
+  el: $('.container'),
   initialize: function() {
     this.template = _.template($('#index-page-templete').html());
     console.log("show view")
