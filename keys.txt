@@ -1,8 +1,0 @@
-Client ID
-c62ade66b5a09270da09
-Client Secret
-347aa61e645c9e0c1fa7ce32475510b5725f41f2
-call back
-http://localhost:8080/callback
-
-callbackcode: code=8cce522e7fdcecf81ea3

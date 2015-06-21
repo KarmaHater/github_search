@@ -1,4 +1,9 @@
+var globalCounter = 1;
 var Issue = Backbone.Model.extend({
+  initialize: function () {
+    this.set('id', globalCounter);
+    globalCounter += 1;
+    },
   defaults: function () {
     return {
       id: '',
@@ -11,7 +16,6 @@ var Issue = Backbone.Model.extend({
     }
   },
   createIssue: function(data) {
-    debugger
     issues.reset()
   for (var i = data.length - 1; i >= 0; i--) {
     var number = data[i].number;

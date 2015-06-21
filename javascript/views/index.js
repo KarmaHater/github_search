@@ -53,7 +53,7 @@ var  IndexIsseusView = Backbone.View.extend({
     .error(function() {
       $("#spinner").hide()
       this.reset()
-      toolTip.danger("An error has occured.", $("#toolTip"))
+      this.formValidation()
     }.bind(this))
     return false
   },
@@ -61,4 +61,13 @@ var  IndexIsseusView = Backbone.View.extend({
     $("#GetResults")[0].reset()
     $("#title").select2({placeholder: "Select a customer"});
   },
+  formValidation: function(){
+    var owner = $("#owner").val()
+    var title = $("#title").val()
+    if (owner && title) {
+      return toolTip.danger("An error has occured.", $("#reposToolTip"))
+    } else {
+      return toolTip.warning("Please enter a value.", $("#reposToolTip"))
+    }
+  }
 })
