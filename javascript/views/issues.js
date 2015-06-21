@@ -14,7 +14,7 @@ var IssueView = Backbone.View.extend({
 
 var IssuesView = Backbone.View.extend({
   model: issues,
-  el: $('#issues-container'),
+  el: '#issues-container',
   initialize: function() {
     this.model.on('add', this.render, this);
     this.model.on('reset', this.render, this);
