@@ -16,16 +16,15 @@ var IssuesView = Backbone.View.extend({
   model: issues,
   el: $('#issues-container'),
   initialize: function() {
-    console.log("creating issues view")
     this.model.on('add', this.render, this);
     this.model.on('reset', this.render, this);
   },
   render: function() {
-    var self = this;
-    self.$el.html('');
-    _.each(this.model.models, function(issue, i) {
-      self.$el.append((new IssueView({model: issue})).render().$el);
-    });
-      return this;
+    this.model.each(this.addIssue, this);
+    return this;
   },
+  addIssue: function(issue) {
+    var issueView = new IssueView({model: issue});
+    this.$el.append(issueView.render().el);
+  }
 });
