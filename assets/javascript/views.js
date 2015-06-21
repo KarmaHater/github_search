@@ -22,21 +22,16 @@ var IssuesView = Backbone.View.extend({
   render: function() {
     var self = this;
     self.$el.html('');
+    debugger
     _.each(this.model.models, function(issue, i) {
       self.$el.append((new IssueView({model: issue})).render().$el);
     });
       return this;
   },
-  events: {
-    "click h2" : "shit"
-  },
-  shit: function() {
-    debugger
-  }
 });
 
 var  IndexIsseusView = Backbone.View.extend({
-  el: $('.container'),
+  el: $('.container-1'),
   initialize: function() {
     this.template = _.template($('#index-page-templete').html());
     console.log("show view")
@@ -46,10 +41,10 @@ var  IndexIsseusView = Backbone.View.extend({
     return this;
   },
   events: {
-    "click h2" : "shit"
+    "submit #GetResults" : "getRepos"
   },
-  shit: function() {
-    debugger
+  getRepos: function() {
+    new IssuesView().render({model: issues})
   }
 })
 
