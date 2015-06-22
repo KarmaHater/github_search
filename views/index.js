@@ -5,14 +5,13 @@ var  IndexIsseusView = Backbone.View.extend({
     this.spinner = $("#spinner");
     this.reposToolTip = $("#reposToolTip");
     this.toolTip = $("#toolTip");
-    this.issuesForm = $("#GetResults");
   },
   render: function() {
     this.$el.html(this.template)
     return this;
   },
   events: {
-    "mouseout #owner" : "getRepos",
+    "mouseleave #owner" : "getRepos",
     "submit #GetResults" : "getIssues"
   },
   getRepos: function(e) {
@@ -48,7 +47,7 @@ var  IndexIsseusView = Backbone.View.extend({
     var title = $("#title").val();
     if ( owner && title ) {
       $.ajax({
-       url: 'https://api.github.com/repos/' + $("#owner").val() + '/'+ $("#title").val() +'/issues',
+       url: 'https://api.github.com/repos/' + owner + '/'+ title +'/issues',
        type: 'GET'
        })
       .success(function(data){
@@ -70,7 +69,10 @@ var  IndexIsseusView = Backbone.View.extend({
   },
   reset: function() {
     this.spinner.hide();
-    this.issuesForm[0].reset();
+    $("#GetResults")[0].reset();
     $("#title").select2({placeholder: "Select a repo"});
   }
 })
+
+// https://api.github.com/repos/' + $("#owner").val() + '/'+ $("#title").val() +'/issues
+// https://api.github.com/users/kinduff/repos
