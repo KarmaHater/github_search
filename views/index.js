@@ -22,7 +22,7 @@ var  IndexIsseusView = Backbone.View.extend({
       this.spinner.hide()
       var data = this.autoFill(data)
        toolTip.alertBox("Repos loaded in select tag", $("#reposToolTip"), "success")
-      $('#title').select2({data: data, placeholder: "Select a Repo"})
+      $('#title').select2({data: data, placeholder: "Select a repo"})
     }.bind(this))
     .error(function() {
       this.spinner.hide()
@@ -40,14 +40,11 @@ var  IndexIsseusView = Backbone.View.extend({
     $("#spinner").show()
     var owner = $("#owner").val()
     var title = $("#title").val()
-    
     if (owner && title) {
-      
       $.ajax({
        url: 'https://api.github.com/repos/' + $("#owner").val() + '/'+ $("#title").val() +'/issues',
        type: 'GET'
        })
-
       .success(function(data){
         var issue = new Issue
         issue.createIssue(data);
@@ -56,7 +53,6 @@ var  IndexIsseusView = Backbone.View.extend({
         var message = data.length + " issues were found"
         toolTip.alertBox(message, $("#toolTip"), "success");
       }.bind(this))
-
       .error(function() {
         this.spinner.hide()
         this.reset()
@@ -70,6 +66,6 @@ var  IndexIsseusView = Backbone.View.extend({
   },
   reset: function() {
     $("#GetResults")[0].reset()
-    $("#title").select2({placeholder: "Select a customer"});
+    $("#title").select2({placeholder: "Select a repo"});
   }
 })
