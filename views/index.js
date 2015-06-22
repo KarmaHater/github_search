@@ -5,6 +5,7 @@ var  IndexIsseusView = Backbone.View.extend({
     this.spinner = $("#spinner");
     this.reposToolTip = $("#reposToolTip");
     this.toolTip = $("#toolTip");
+    this.issuesForm = $("#GetResults");
   },
   render: function() {
     this.$el.html(this.template)
@@ -15,23 +16,26 @@ var  IndexIsseusView = Backbone.View.extend({
     "submit #GetResults" : "getIssues"
   },
   getRepos: function(e) {
-    this.spinner.show()
-    $.ajax({
-     url: 'https://api.github.com/users/' + $("#owner").val() + '/repos',
-     type: 'GET'
-     })
-    .success(function(data){
-      this.spinner.hide();
-      var data = this.autoFill(data);
-       toolTip.alertBox("Repos loaded in select tag", this.reposToolTip, "success");
-      $('#title').select2({data: data, placeholder: "Select a repo"})
-    }.bind(this))
-    .error(function() {
-      this.spinner.hide();
-      toolTip.alertBox("An error has occured.", this.reposToolTip, "danger");
-    }.bind(this))
-    return false
-    new IssuesView().render({model: issues})
+    if ( owner ) {
+      var owner = $("#owner").val();
+      this.spinner.show()
+      $.ajax({
+       url: 'https://api.github.com/users/' + owner + '/repos',
+       type: 'GET'
+       })
+      .success(function(data){
+        this.spinner.hide();
+        var data = this.autoFill(data);
+         toolTip.alertBox("Repos loaded in select tag", this.reposToolTip, "success");
+        $('#title').select2({data: data, placeholder: "Select a repo"})
+      }.bind(this))
+      .error(function() {
+        this.spinner.hide();
+        toolTip.alertBox("An error has occured.", this.reposToolTip, "danger");
+      }.bind(this))
+      return false
+      new IssuesView().render({model: issues})
+    }
   },
   autoFill: function(data) {
     return _.map( data, function(repo){
@@ -39,10 +43,10 @@ var  IndexIsseusView = Backbone.View.extend({
     })
   },
   getIssues: function (e) {
-    $("#spinner").show()
+    this.spinner.show()
     var owner = $("#owner").val();
     var title = $("#title").val();
-    if (owner && title) {
+    if ( owner && title ) {
       $.ajax({
        url: 'https://api.github.com/repos/' + $("#owner").val() + '/'+ $("#title").val() +'/issues',
        type: 'GET'
@@ -66,7 +70,7 @@ var  IndexIsseusView = Backbone.View.extend({
   },
   reset: function() {
     this.spinner.hide();
-    $("#GetResults")[0].reset();
+    this.issuesForm[0].reset();
     $("#title").select2({placeholder: "Select a repo"});
   }
 })
