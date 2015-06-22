@@ -16,8 +16,8 @@ var  IndexIsseusView = Backbone.View.extend({
     "submit #GetResults" : "getIssues"
   },
   getRepos: function(e) {
-    if ( owner ) {
       var owner = $("#owner").val();
+    if ( owner ) {
       this.spinner.show()
       $.ajax({
        url: 'https://api.github.com/users/' + owner + '/repos',
