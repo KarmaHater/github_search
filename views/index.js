@@ -2,7 +2,7 @@ var  IndexIsseusView = Backbone.View.extend({
   el: $('.container'),
   initialize: function() {
     this.template = _.template($('#index-page-templete').html());
-    console.log("show view")
+    this.spinner = $("#spinner")
   },
   render: function() {
     this.$el.html(this.template)
@@ -13,20 +13,20 @@ var  IndexIsseusView = Backbone.View.extend({
     "submit #GetResults" : "getIssues"
   },
   getRepos: function(e) {
-    $("#spinner").show()
+    this.spinner.show()
     $.ajax({
      url: 'https://api.github.com/users/' + $("#owner").val() + '/repos',
      type: 'GET'
      })
     .success(function(data){
-      $("#spinner").hide()
+      this.spinner.hide()
       var data = this.autoFill(data)
-       toolTip.success("Repos loaded in select tag", $("#reposToolTip"))
+       toolTip.alertBox("Repos loaded in select tag", $("#reposToolTip"), "success")
       $('#title').select2({data: data, placeholder: "Select a Repo"})
     }.bind(this))
     .error(function() {
-      $("#spinner").hide()
-      toolTip.danger("An error has occured.", $("#reposToolTip"))
+      this.spinner.hide()
+      toolTip.alertBox("An error has occured.", $("#reposToolTip"), "danger")
     }.bind(this))
     return false
     new IssuesView().render({model: issues})
@@ -38,36 +38,38 @@ var  IndexIsseusView = Backbone.View.extend({
   },
   getIssues: function (e) {
     $("#spinner").show()
-    $.ajax({
-     url: 'https://api.github.com/repos/' + $("#owner").val() + '/'+ $("#title").val() +'/issues',
-     type: 'GET'
-     })
-    .success(function(data){
-      var issue = new Issue
-      issue.createIssue(data);
-      $("#spinner").hide()
-      this.reset()
-      var message = data.length + " issues were found"
-      toolTip.success(message, $("#toolTip"));
-    }.bind(this))
-    .error(function() {
-      $("#spinner").hide()
-      this.reset()
-      this.formValidation()
-    }.bind(this))
+    var owner = $("#owner").val()
+    var title = $("#title").val()
+    
+    if (owner && title) {
+      
+      $.ajax({
+       url: 'https://api.github.com/repos/' + $("#owner").val() + '/'+ $("#title").val() +'/issues',
+       type: 'GET'
+       })
+
+      .success(function(data){
+        var issue = new Issue
+        issue.createIssue(data);
+        this.spinner.hide()
+        this.reset()
+        var message = data.length + " issues were found"
+        toolTip.alertBox(message, $("#toolTip"), "success");
+      }.bind(this))
+
+      .error(function() {
+        this.spinner.hide()
+        this.reset()
+        toolTip.alertBox("An error has occured.", $("#reposToolTip", "danger"))
+      }.bind(this))
+    } else {
+      this.spinner.hide()
+     toolTip.alertBox("Please enter a value.", $("#reposToolTip"), "warning")
+    }
     return false
   },
   reset: function() {
     $("#GetResults")[0].reset()
     $("#title").select2({placeholder: "Select a customer"});
-  },
-  formValidation: function(){
-    var owner = $("#owner").val()
-    var title = $("#title").val()
-    if (owner && title) {
-      return toolTip.danger("An error has occured.", $("#reposToolTip"))
-    } else {
-      return toolTip.warning("Please enter a value.", $("#reposToolTip"))
-    }
   }
 })
