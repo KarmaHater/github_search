@@ -50,13 +50,11 @@ var  IndexIsseusView = Backbone.View.extend({
       .success(function(data){
         var issue = new Issue
         issue.createIssue(data);
-        this.spinner.hide();
         this.reset();
         var message = data.length + " issues were found"
         toolTip.alertBox(message, this.toolTip, "success");
       }.bind(this))
       .error(function() {
-        this.spinner.hide();
         this.reset();
         toolTip.alertBox("An error has occured.", this.toolTip, "danger");
       }.bind(this))
@@ -67,6 +65,7 @@ var  IndexIsseusView = Backbone.View.extend({
     return false
   },
   reset: function() {
+    this.spinner.hide();
     $("#GetResults")[0].reset();
     $("#title").select2({placeholder: "Select a repo"});
   }
