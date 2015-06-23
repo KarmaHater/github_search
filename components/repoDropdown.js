@@ -1,4 +1,5 @@
-function Repo () {}
+function Repo () {
+}
 
 Repo.prototype = {
   set: function (e, spinner, toolTipClass) {
@@ -7,7 +8,19 @@ Repo.prototype = {
       spinner.show()
       $.ajax({
          url: 'https://api.github.com/users/' + owner + '/repos',
-         type: 'GET'
+         type: 'GET',
+         statusCode: {
+           404: function() {
+              toolTip.alertBox("There is no Github user by that name.", $("#reposToolTip"), "danger");
+              console.log("hry")
+           }
+         },
+         statusCode: {
+           403: function() {
+              toolTip.alertBox("Hit Max Github api hits.", $("#reposToolTip"), "danger");
+              console.log("hry")
+           }
+         }
        })
       .success(function(data){
         spinner.hide();

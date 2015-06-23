@@ -7,7 +7,12 @@ Navigation.prototype = {
     url = url + page_num;
     var ajax = $.ajax({
        url: url,
-       type: 'GET'
+       type: 'GET',
+       statusCode: {
+         403: function() {
+            toolTip.alertBox("Hit Max Github api hits.", $("#reposToolTip"), "danger");
+         }
+       }
      })
     ajax.success(function(data){
       if(data.length > 0) {
@@ -31,7 +36,12 @@ Navigation.prototype = {
     } else {
       $.ajax({
        url: url,
-       type: 'GET'
+       type: 'GET',
+       statusCode: {
+         403: function() {
+            toolTip.alertBox("Hit Max Github api hits.", $("#reposToolTip"), "danger");
+         }
+       }
        })
       .success(function(data){
         url =  url.substring(0, url.length - 1);

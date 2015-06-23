@@ -28,7 +28,12 @@ var  IndexIsseusView = Backbone.View.extend({
     if ( owner && title ) {
       $.ajax({
        url: 'https://api.github.com/repos/' + owner + '/'+ title +'/issues?per_page=5&page=1',
-       type: 'GET'
+       type: 'GET',
+       statusCode: {
+         403: function() {
+            toolTip.alertBox("Hit Max Github api hits.", $("#reposToolTip"), "danger");
+           }
+         }
        })
       .success(function(data){
         var issue = new Issue
