@@ -8,6 +8,8 @@ var IssuesView = Backbone.View.extend({
     this.model.on('reset', this.render, this);
   },
   render: function() {
+    console.log("I reset myself")
+    console.log("or added something")
     this.model.each(this.addIssue, this);
     return this;
   },

@@ -58,6 +58,7 @@ var  IndexIsseusView = Backbone.View.extend({
         var issue = new Issue
         issue.createIssue(data);
         this.resetForm();
+        new IssuesView().render()
         var message = data.length + " issues were found"
         toolTip.alertBox(message, this.toolTip, "success");
       }.bind(this))
