@@ -5,16 +5,11 @@ Navigation.prototype = {
   next: function(url) { 
     page_num = page_num + 1;
     url = url + page_num;
-    var ajax = $.ajax({
+    $.ajax({
        url: url,
-       type: 'GET',
-       statusCode: {
-         403: function() {
-            toolTip.alertBox("Hit Max Github api hits.", $("#reposToolTip"), "danger");
-         }
-       }
+       type: 'GET'
      })
-    ajax.success(function(data){
+    .success(function(data){
       if(data.length > 0) {
       url =  url.substring(0, url.length - 1);
        var issue = new Issue;
@@ -23,8 +18,12 @@ Navigation.prototype = {
         toolTip.alertBox("There are no more repos.", $("#toolTip"), "warning");
       }
     })
-    ajax.error(function() {
-      toolTip.alertBox("An error has occured.", $("#toolTip"), "danger");
+    .error(function(xhr) {
+      if (xhr.status === 403){
+        toolTip.alertBox("Hit Max Github api hits.", $("#reposToolTip"), "danger");
+      } else {
+        toolTip.alertBox("An error has occured.", $("#toolTip"), "danger");
+      }
     })
   },
   pervious: function(url){
@@ -41,15 +40,19 @@ Navigation.prototype = {
          403: function() {
             toolTip.alertBox("Hit Max Github api hits.", $("#reposToolTip"), "danger");
          }
-       }
+        }
        })
       .success(function(data){
         url =  url.substring(0, url.length - 1);
         var issue = new Issue;
         issue.createIssue(data);
       })
-      .error(function() {
-        toolTip.alertBox("An error has occured.", $("#toolTip"), "danger");
+      .error(function(xhr) {
+        if (xhr.status === 403){
+          toolTip.alertBox("Hit Max Github api hits.", $("#reposToolTip"), "danger");
+        } else {
+          toolTip.alertBox("An error has occured.", $("#toolTip"), "danger");
+        }
       })
     }
   }

@@ -12,13 +12,11 @@ Repo.prototype = {
          statusCode: {
            404: function() {
               toolTip.alertBox("There is no Github user by that name.", $("#reposToolTip"), "danger");
-              console.log("hry")
            }
          },
          statusCode: {
            403: function() {
               toolTip.alertBox("Hit Max Github api hits.", $("#reposToolTip"), "danger");
-              console.log("hry")
            }
          }
        })
