@@ -13,7 +13,6 @@ navigation.next = function(url, page_num){
     issues.reset()
     var issue = new Issue
     issue.createIssue(data);
-    // new IssuesView().render({model: issues})
    } else {
      toolTip.alertBox("There are no more repos.", $("#toolTip"), "warning");
    }

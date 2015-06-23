@@ -50,14 +50,14 @@ var  IndexIsseusView = Backbone.View.extend({
     url = 'https://api.github.com/repos/' + owner + '/'+ title +'/issues?per_page=5&page='
     if ( owner && title ) {
       $.ajax({
-       url: 'https://api.github.com/repos/' + owner + '/'+ title +'/issues?per_page=10&page=1',
+       url: 'https://api.github.com/repos/' + owner + '/'+ title +'/issues?per_page=5&page=1',
        type: 'GET'
        })
       .success(function(data){
         var issue = new Issue
         issue.createIssue(data);
         this.resetForm();
-        // new IssuesView().render({model: issues})
+        new IssuesView().render({model: issues})
         var message = data.length + " issues were found"
         toolTip.alertBox(message, this.toolTip, "success");
       }.bind(this))
