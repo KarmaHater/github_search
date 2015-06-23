@@ -83,6 +83,3 @@ var  IndexIsseusView = Backbone.View.extend({
     navigate.pervious(url);
   }
 })
-
-// https://api.github.com/repos/' + $("#owner").val() + '/'+ $("#title").val() +'/issues
-// https://api.github.com/users/kinduff/repos
