@@ -18,7 +18,9 @@ var Issue = Backbone.Model.extend({
   },
   createIssue: function(data) {
     issues.reset()
+    var counter = 1 
   for (var i = data.length - 1; i >= 0; i--) {
+    counter = counter ++
     var number = data[i].number;
     var title = data[i].title;
     var createdAt = data[i].created_at;

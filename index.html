@@ -51,15 +51,14 @@
     </div>
   </div>
   <div class="col-md-2 pull-right navigation-btn">
-    <button id="next" class="btn btn-info">next</button>
     <button id="pervious" class="btn btn-info">pervious</button>
+    <button id="next" class="btn btn-info">next</button>
   </div>
   </script>
   <script type="text/template" id="issue-template">
     <td><a href="#issues/<%= id %>"><%= title %></a></td>
     <td><%= number %></td>
     <td><%= createdAt %></td>
-    
   </script>
   <script type="text/template" id="issue-show-template">
     <div class="row users">
@@ -79,6 +78,7 @@
   <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
   <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.full.js"></script>
   <script src="components/toolTips.js" type="text/javascript"></script>
+  <script src="components/navigation.js" type="text/javascript"></script>
   <script src="models/issue_models.js" type="text/javascript"></script>
   <script src="collections/issues_collection.js" type="text/javascript"></script>
   <script src="views/issue_view.js" type="text/javascript"></script>
