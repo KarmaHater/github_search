@@ -1,18 +1,18 @@
 var page_num = 1;
 function Navigation () {}
-Navigation.prototype = {
 
-  next: function(url){
-    page_num = page_num + 1
-    url = url + page_num
-    url = url + page_num
+Navigation.prototype = {
+  next: function(url) { 
+    page_num = page_num + 1;
+    url = url + page_num;
     var ajax = $.ajax({
        url: url,
        type: 'GET'
      })
     ajax.success(function(data){
-      if(data) {
-       var issue = new Issue
+      if(data.length > 0) {
+      url =  url.substring(0, url.length - 1);
+       var issue = new Issue;
        issue.createIssue(data);
       } else {
         toolTip.alertBox("There are no more repos.", $("#toolTip"), "warning");
@@ -23,18 +23,19 @@ Navigation.prototype = {
     })
   },
   pervious: function(url){
-    page_num = page_num - 1
-    url = url + page_num
+    page_num = page_num - 1;
+    url = url + page_num;
     if (page_num == 0){
+      page_num = page_num + 1;
       toolTip.alertBox("You are on page one.", $("#toolTip"), "warning");
     } else {
-      url = url + page_num
       $.ajax({
        url: url,
        type: 'GET'
        })
       .success(function(data){
-        var issue = new Issue
+        url =  url.substring(0, url.length - 1);
+        var issue = new Issue;
         issue.createIssue(data);
       })
       .error(function() {
@@ -44,4 +45,4 @@ Navigation.prototype = {
   }
 }
 
-var navigate = new Navigation
+var navigate = new Navigation;

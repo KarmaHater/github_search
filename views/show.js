@@ -4,7 +4,6 @@ var ShowIssuesView = Backbone.View.extend({
   el: $('.container'),
   initialize: function() {
     this.template = _.template($('#issue-show-template').html());
-    console.log("show view")
   },
   render: function() {
     var id = parseInt(this.id)

@@ -1,4 +1,3 @@
-var page_num = 1;
 var  IndexIsseusView = Backbone.View.extend({
   el: $('.container'),
   initialize: function() {
@@ -13,7 +12,7 @@ var  IndexIsseusView = Backbone.View.extend({
     return this;
   },
   events: {
-    // "mouseleave #owner" : "getRepos",
+    "mouseleave #owner" : "getRepos",
     "submit #GetResults" : "getIssues",
     "click #next" : "next",
     "click #pervious" : "pervious"
@@ -77,47 +76,11 @@ var  IndexIsseusView = Backbone.View.extend({
     $("#GetResults")[0].reset();
     $("#title").select2({placeholder: "Select a repo"});
   },
-  next: function(){ 1
-    page_num = page_num + 1
-    url = url + page_num
-    var ajax = $.ajax({
-       url: url,
-       type: 'GET'
-     })
-    ajax.success(function(data){
-    debugger
-      if(data.length > 0) {
-      url =  url.substring(0, url.length - 1);
-       var issue = new Issue
-       issue.createIssue(data);
-      } else {
-        toolTip.alertBox("There are no more repos.", $("#toolTip"), "warning");
-      }
-    })
-    ajax.error(function() {
-      toolTip.alertBox("An error has occured.", $("#toolTip"), "danger");
-    })
+  next: function() { 
+    navigate.next(url);
   },
-  pervious: function(){
-    page_num = page_num - 1
-    url = url + page_num
-    if (page_num == 0){
-      page_num = page_num + 1
-      toolTip.alertBox("You are on page one.", $("#toolTip"), "warning");
-    } else {
-      $.ajax({
-       url: url,
-       type: 'GET'
-       })
-      .success(function(data){
-        url =  url.substring(0, url.length - 1);
-        var issue = new Issue
-        issue.createIssue(data);
-      })
-      .error(function() {
-        toolTip.alertBox("An error has occured.", $("#toolTip"), "danger");
-      })
-    }
+  pervious: function() {
+    navigate.pervious(url);
   }
 })
 
