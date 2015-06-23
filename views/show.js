@@ -1,6 +1,5 @@
 var ShowIssuesView = Backbone.View.extend({
   id: "",
-  model: issues,
   el: $('.container'),
   initialize: function() {
     this.template = _.template($('#issue-show-template').html());

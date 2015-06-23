@@ -1,14 +1,9 @@
-var globalCounter = (function(){
-  var count = 0;
-  return {
-    count
-  }
-})();
+var globalCounter = 0;
 
 var Issue = Backbone.Model.extend({
   initialize: function () {
     this.set('id', globalCounter);
-    globalCounter.count += 1;
+    globalCounter += 1;
     },
   defaults: function () {
     return {
@@ -32,7 +27,8 @@ var Issue = Backbone.Model.extend({
     var account = data[i].user.html_url;
     var issue = new Issue({number: number, title: title, createdAt: createdAt, user: user, avatar: avatar, account: account});
     number
-    issues.createIssueList(issue);
+    issues.add(issue)
+    // issues.createIssueList(issue);
     }
   }
 });
