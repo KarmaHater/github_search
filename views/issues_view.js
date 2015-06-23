@@ -1,4 +1,5 @@
-var issues = new IssuesList();
+// var issues = new IssuesList(); 
+// uncommenting out this line make double issues appear but leaving it comment out breaks that router. Don't know why? :/
 
 var IssuesView = Backbone.View.extend({
   model: issues,
