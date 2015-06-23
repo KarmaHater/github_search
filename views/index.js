@@ -57,12 +57,12 @@ var  IndexIsseusView = Backbone.View.extend({
       .success(function(data){
         var issue = new Issue
         issue.createIssue(data);
-        this.reset();
+        this.resetForm();
         var message = data.length + " issues were found"
         toolTip.alertBox(message, this.toolTip, "success");
       }.bind(this))
       .error(function() {
-        this.reset();
+        this.resetForm();
         toolTip.alertBox("An error has occured.", this.toolTip, "danger");
       }.bind(this))
     } else {
@@ -71,15 +71,16 @@ var  IndexIsseusView = Backbone.View.extend({
     }
     return false
   },
-  reset: function() {
+  resetForm: function() {
     this.spinner.hide();
     $("#GetResults")[0].reset();
     $("#title").select2({placeholder: "Select a repo"});
   },
   next: function(){
     issues.reset()
+    page_num = page_num + 1
     url = url + page_num
-    // navigation.next(url)
+    navigation.next(url)
   },
   pervious: function(){
     url = url + page_num

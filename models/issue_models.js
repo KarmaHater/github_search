@@ -18,6 +18,7 @@ var Issue = Backbone.Model.extend({
   },
   createIssue: function(data) {
     issues.reset()
+    debugger
     var counter = 1 
   for (var i = data.length - 1; i >= 0; i--) {
     counter = counter ++
@@ -31,6 +32,7 @@ var Issue = Backbone.Model.extend({
     number
     issues.add(issue)
     }
+    console.log(counter)
   }
 });
 

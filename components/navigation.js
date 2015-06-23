@@ -2,26 +2,28 @@ var navigation = {}
 
 navigation.page = 1
 navigation.next = function(url, page_num){
- navigation.page = page_num++
- url = url + navigation.page
+ url = url + page_num
  $.ajax({
     url: url,
     type: 'GET'
   })
  .success(function(data){
    if(data) {
-
+    debugger
+    issues.reset()
+    var issue = new Issue
+    issue.createIssue(data);
    } else {
      toolTip.alertBox("There are no more repos.", $("#toolTip"), "warning");
    }
- }.bind(this))
+ })
  .error(function() {
-   toolTip.alertBox("An error has occured.", this.toolTip, "danger");
- }.bind(this))
+   toolTip.alertBox("An error has occured.", $("#toolTip"), "danger");
+ })
 }
 
 navigation.pervious= function(url){
-  navigation.page = page_num--
+  navigation.page = page_num - 1
   url = url + navigation.page
   if (page === 1){
     toolTip.alertBox("You are on page one.", $("#toolTip"), "warning");
@@ -35,9 +37,9 @@ navigation.pervious= function(url){
      })
     .success(function(data){
 
-    }.bind(this))
+    })
     .error(function() {
-      toolTip.alertBox("An error has occured.", this.toolTip, "danger");
-    }.bind(this))
+      toolTip.alertBox("An error has occured.", $("#toolTip"), "danger");
+    })
   }
 }
