@@ -12,7 +12,7 @@ var  IndexIsseusView = Backbone.View.extend({
     return this;
   },
   events: {
-    "mouseleave #owner" : "getRepos",
+    "blur #owner" : "getRepos",
     "submit #GetResults" : "getIssues",
     "click #next" : "next",
     "click #pervious" : "pervious"
