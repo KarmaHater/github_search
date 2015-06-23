@@ -28,7 +28,6 @@ var Issue = Backbone.Model.extend({
     var issue = new Issue({number: number, title: title, createdAt: createdAt, user: user, avatar: avatar, account: account});
     number
     issues.add(issue)
-    // issues.createIssueList(issue);
     }
   }
 });

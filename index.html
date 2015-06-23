@@ -50,11 +50,16 @@
       </table>
     </div>
   </div>
+  <div class="col-md-2 pull-right navigation-btn">
+    <button id="next" class="btn btn-info">next</button>
+    <button id="pervious" class="btn btn-info">pervious</button>
+  </div>
   </script>
   <script type="text/template" id="issue-template">
     <td><a href="#issues/<%= id %>"><%= title %></a></td>
     <td><%= number %></td>
     <td><%= createdAt %></td>
+    
   </script>
   <script type="text/template" id="issue-show-template">
     <div class="row users">

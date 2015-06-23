@@ -6,3 +6,8 @@
   padding: 15px;
   box-shadow: 10px 10px 5px #888888;
 }
+
+.navigation-btn {
+  padding-left: 50px;
+  padding-right: 0;
+}
