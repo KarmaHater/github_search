@@ -1,6 +1,4 @@
-// var issues = new IssuesList(); 
-// uncommenting out this line make double issues appear but leaving it comment out breaks that router. Don't know why? :/
-
+var issues = new IssuesList();
 var IssuesView = Backbone.View.extend({
   model: issues,
   el: '#issues-container',
@@ -9,6 +7,7 @@ var IssuesView = Backbone.View.extend({
     this.model.on('add', this.render, this);
   },
   render: function() {
+    this.$el.html("")
     this.model.each(this.addIssue, this);
     return this;
   },

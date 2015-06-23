@@ -3,12 +3,12 @@ var navigation = {}
 navigation.page = 1
 navigation.next = function(url, page_num){
  url = url + page_num
- $.ajax({
+ var ajax = $.ajax({
     url: url,
     type: 'GET'
   })
- .success(function(data){
-   if(data) {
+ ajax.success(function(date){
+   if(date) {
     debugger
     issues.reset()
     var issue = new Issue
@@ -17,11 +17,10 @@ navigation.next = function(url, page_num){
      toolTip.alertBox("There are no more repos.", $("#toolTip"), "warning");
    }
  })
- .error(function() {
+ ajax.error(function() {
    toolTip.alertBox("An error has occured.", $("#toolTip"), "danger");
  })
 }
-
 navigation.pervious= function(url){
   navigation.page = page_num - 1
   url = url + navigation.page
