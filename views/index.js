@@ -18,30 +18,7 @@ var  IndexIsseusView = Backbone.View.extend({
     "click #pervious" : "pervious"
   },
   getRepos: function(e) {
-      var owner = $("#owner").val();
-    if ( owner ) {
-      this.spinner.show()
-      $.ajax({
-       url: 'https://api.github.com/users/' + owner + '/repos',
-       type: 'GET'
-       })
-      .success(function(data){
-        this.spinner.hide();
-        var data = this.autoFill(data);
-         toolTip.alertBox("Repos loaded in select tag", this.reposToolTip, "success");
-        $('#title').select2({data: data, placeholder: "Select a repo"})
-      }.bind(this))
-      .error(function() {
-        this.spinner.hide();
-        toolTip.alertBox("An error has occured.", this.reposToolTip, "danger");
-      }.bind(this))
-      return false
-    }
-  },
-  autoFill: function(data) {
-    return _.map( data, function(repo){
-      return repo.name
-    })
+     repoList.set(e, this.spinner, this.reposToolTip);
   },
   getIssues: function (e) {
     this.spinner.show()
