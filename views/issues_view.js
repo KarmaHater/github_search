@@ -4,14 +4,15 @@ var IssuesView = Backbone.View.extend({
   model: issues,
   el: '#issues-container',
   initialize: function() {
+    this.model.on('reset', this.poop, this);
     this.model.on('add', this.render, this);
-    this.model.on('reset', this.render, this);
   },
   render: function() {
-    console.log("I reset myself")
-    console.log("or added something")
     this.model.each(this.addIssue, this);
     return this;
+  },
+  poop: function(){
+    debugger
   },
   addIssue: function(issue) {
     var issueView = new IssueView({model: issue});

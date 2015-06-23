@@ -22,7 +22,7 @@ var  IndexIsseusView = Backbone.View.extend({
     if ( owner ) {
       this.spinner.show()
       $.ajax({
-       url: 'https://api.github.com/users/' + owner + '/repos?per_page=5&page=1',
+       url: 'https://api.github.com/users/' + owner + '/repos',
        type: 'GET'
        })
       .success(function(data){
@@ -36,7 +36,6 @@ var  IndexIsseusView = Backbone.View.extend({
         toolTip.alertBox("An error has occured.", this.reposToolTip, "danger");
       }.bind(this))
       return false
-      new IssuesView().render({model: issues})
     }
   },
   autoFill: function(data) {
@@ -51,14 +50,14 @@ var  IndexIsseusView = Backbone.View.extend({
     url = 'https://api.github.com/repos/' + owner + '/'+ title +'/issues?per_page=5&page='
     if ( owner && title ) {
       $.ajax({
-       url: 'https://api.github.com/repos/' + owner + '/'+ title +'/issues?per_page=5&page=1',
+       url: 'https://api.github.com/repos/' + owner + '/'+ title +'/issues?per_page=10&page=1',
        type: 'GET'
        })
       .success(function(data){
         var issue = new Issue
         issue.createIssue(data);
         this.resetForm();
-        new IssuesView().render()
+        // new IssuesView().render({model: issues})
         var message = data.length + " issues were found"
         toolTip.alertBox(message, this.toolTip, "success");
       }.bind(this))
